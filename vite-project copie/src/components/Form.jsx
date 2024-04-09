@@ -16,11 +16,22 @@ const Form = () => {
 
                 }
             };
+
+            const handleBinaryChange = (event) => {
+                const input = event.target.value;
+                if (/^[0-1]+$/.test(input)) {
+                  setBinaireNumber(input);
+                  setDecimalNumber(parseInt(input, 2));
+                } else {
+                    setBinaireNumber('');
+                  setDecimalNumber('');
+                }
+              };
     
     
     return (
             <div>
-                <h2>covertisseur de nombre</h2>
+                <h2>covertisseur de nombre decimal</h2>
                 <label>
                     entrez un nombre :
                     <input type="text" value={decimalNumber} onChange={handleChange} />
@@ -30,7 +41,21 @@ const Form = () => {
                         le nombre binaire correspondant est : {binaireNumber}
                     </p>
                 )}
+
+                <h2>convertisseur de nombre binaire</h2>
+                <label>
+                    entrez un nombre :
+                    <input type="text" value={binaireNumber} onChange={handleBinaryChange} />
+                </label>
+                {decimalNumber && (
+                    <p>
+                        le nombre binaire correspondant est : {decimalNumber}
+                    </p>
+                )}
             </div>
+            
+
+                    
          
     );
 };
